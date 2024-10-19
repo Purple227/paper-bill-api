@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\WalletController;
 
 
 /*
@@ -29,6 +30,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Services API Route
     Route::get('services', [ServiceController::class, 'listService']);
+    Route::get('services/{identifier}', [ServiceController::class, 'listServiceProvider']);
+    Route::get('services/variation/{service}', [ServiceController::class, 'listServiceVariation']);
+    Route::get('services/pay', [ServiceController::class, 'payService']);
+
+
+    // Wallet API Route
+    Route::post('/wallet/deposit', [WalletController::class, 'deposit']);
+    Route::get('/wallet/transactions', [WalletController::class, 'getTransactions']);
+    Route::get('/wallet/balance', [WalletController::class, 'getBalance']);
 
 });
 

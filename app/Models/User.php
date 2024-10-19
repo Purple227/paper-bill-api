@@ -50,4 +50,10 @@ class User extends Authenticatable
         $this->otp_expires_at = now()->addMinutes(5);
         $this->save();
     }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+    
 }
